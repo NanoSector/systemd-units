@@ -1,0 +1,9 @@
+[Unit]
+Description=Nextcloud cron.php job
+
+[Service]
+User=nginx
+ExecStart=/usr/bin/php -f /var/www/nextcloud.nanosector.nl/cron.php
+
+[Install]
+WantedBy=basic.target

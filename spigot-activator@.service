@@ -1,0 +1,18 @@
+[Unit]
+Description=Socket activation proxy for spigot instance %i
+Requires=spigot@%i.service
+After=spigot@%i.service
+BindsTo=spigot@%i.service
+Requires=spigot-activator@.socket
+After=spigot-activator@.socket
+
+[Service]
+EnvironmentFile=/home/spigot/%i/envfile
+# The envfile contains the SPIGOT_PORT
+
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd 127.0.0.1:${SPIGOT_PORT}
+# You might need to replace localhost with 127.0.0.1 if your Spigot does not speak ipv6.
+
+ProtectSystem=full
+PrivateTmp=yes
+PrivateDevices=yes

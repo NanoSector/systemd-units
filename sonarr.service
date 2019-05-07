@@ -1,0 +1,29 @@
+[Unit]
+Description=Sonarr Daemon
+After=syslog.target network.target
+
+[Service]
+User=sonarr
+Group=media
+
+Type=exec
+ExecStart=/usr/bin/mono /opt/Sonarr/sonarr/NzbDrone.exe -nobrowser
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+ProtectSystem=strict
+PrivateDevices=yes
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/opt/Sonarr /mnt/media/Series
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+#TemporaryFileSystem=/etc /usr /var /opt /mnt
+
+#BindPaths=/opt/Sonarr
+#BindReadOnlyPaths=/usr/lib /usr/bin /usr/bin/mono
+
+[Install]
+WantedBy=multi-user.target

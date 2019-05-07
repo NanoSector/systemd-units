@@ -1,0 +1,18 @@
+[Unit]
+Description=BungeeCord Minecraft proxy
+After=network.target
+RequiresMountsFor=/srv/bungee
+
+[Service]
+Type=simple
+User=spigot
+WorkingDirectory=/home/spigot/bungee
+ExecStart=/usr/bin/java -Xmx512M -jar BungeeCord.jar --noconsole
+SuccessExitStatus=143
+
+ProtectSystem=full
+PrivateDevices=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

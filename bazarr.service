@@ -1,0 +1,21 @@
+[Unit]
+Description=bazarr Daemon
+After=syslog.target network.target
+
+[Service]
+User=bazarr
+Group=media
+
+Type=simple
+ExecStart=/usr/bin/python2 /opt/Bazarr/bazarr.py
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+ReadWritePaths=/opt/Bazarr /mnt/media
+ProtectSystem=strict
+PrivateDevices=true
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

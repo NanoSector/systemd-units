@@ -1,0 +1,21 @@
+[Unit]
+Description=Radarr Daemon
+After=syslog.target network.target
+
+[Service]
+User=radarr
+Group=media
+
+Type=simple
+ExecStart=/usr/bin/mono /opt/Radarr/radarr/Radarr.exe -nobrowser
+KillMode=process
+TimeoutStopSec=20
+
+ProtectSystem=strict
+PrivateDevices=true
+ProtectHome=true
+ReadWritePaths=/opt/Radarr /mnt/media/Movies
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

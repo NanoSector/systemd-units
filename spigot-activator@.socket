@@ -1,0 +1,8 @@
+[Unit]
+Description=Socket activation proxy socket for spigot instance %i
+
+[Socket]
+BindToDevice=lo
+
+[Install]
+WantedBy=sockets.target

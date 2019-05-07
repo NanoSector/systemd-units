@@ -1,0 +1,10 @@
+[Unit]
+Description=Tiny Tiny RSS Update Daemon
+After=network.target postgresql.service
+
+[Service]
+User=nginx
+ExecStart=/usr/bin/php /var/www/ttrss.nanosector.nl/update_daemon2.php
+
+[Install]
+WantedBy=multi-user.target
