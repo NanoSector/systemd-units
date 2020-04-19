@@ -1,0 +1,27 @@
+[Unit]
+Description=AdGuard Home Daemon
+After=syslog.target network.target
+
+[Service]
+User=adguard
+Group=adguard
+
+Type=exec
+ExecStart=/opt/adguard/AdGuardHome
+ReadWritePaths=/opt/adguard
+
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+ProtectSystem=strict
+PrivateDevices=yes
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
