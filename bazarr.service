@@ -13,9 +13,28 @@ KillMode=process
 Restart=on-failure
 
 ReadWritePaths=/opt/Bazarr /mnt/media
+
+CapabilityBoundingSet=
+LockPersonality=yes
+#MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+PrivateDevices=yes
+PrivateTmp=yes
+PrivateUsers=yes
+
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
 ProtectSystem=strict
-PrivateDevices=true
-ProtectHome=true
 
 [Install]
 WantedBy=multi-user.target

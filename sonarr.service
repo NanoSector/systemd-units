@@ -6,24 +6,35 @@ After=syslog.target network.target
 User=sonarr
 Group=media
 
-Type=exec
+Type=simple
 ExecStart=/usr/bin/mono /opt/Sonarr/sonarr/NzbDrone.exe -nobrowser
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
 
-ProtectSystem=strict
-PrivateDevices=yes
-ProtectHome=yes
-PrivateTmp=yes
 ReadWritePaths=/opt/Sonarr /mnt/media/Series
+
+CapabilityBoundingSet=
+LockPersonality=yes
+#MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+PrivateDevices=yes
+PrivateTmp=yes
+PrivateUsers=yes
+
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
 ProtectKernelTunables=yes
 ProtectKernelModules=yes
-ProtectControlGroups=yes
-#TemporaryFileSystem=/etc /usr /var /opt /mnt
-
-#BindPaths=/opt/Sonarr
-#BindReadOnlyPaths=/usr/lib /usr/bin /usr/bin/mono
+ProtectSystem=strict
 
 [Install]
 WantedBy=multi-user.target

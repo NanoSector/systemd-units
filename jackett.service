@@ -14,11 +14,29 @@ RestartSec=5
 TimeoutStopSec=20
 SyslogIdentifier=jackett
 
-ProtectSystem=strict
-PrivateDevices=true
-ProtectHome=true
 ReadWritePaths=/opt/Jackett
-PrivateTmp=true
+
+CapabilityBoundingSet=
+LockPersonality=yes
+#MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
+
+PrivateDevices=yes
+PrivateTmp=yes
+PrivateUsers=yes
+
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectSystem=strict
 
 [Install]
 WantedBy=multi-user.target

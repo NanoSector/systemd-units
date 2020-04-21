@@ -24,12 +24,29 @@ RestartSec=5s
 
 # These options sandbox the WildPHP process. Recommended to not change these.
 # These defaults assume WildPHP lives in /opt/wildphp.
-ProtectSystem=strict
-PrivateDevices=true
-ProtectHome=true
 ReadWritePaths=/opt/wildphp
-RuntimeDirectory=wildphp
-PrivateTmp=true
+
+CapabilityBoundingSet=
+LockPersonality=yes
+#MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+PrivateDevices=yes
+PrivateTmp=yes
+PrivateUsers=yes
+
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectSystem=strict
 
 [Install]
 WantedBy=multi-user.target
